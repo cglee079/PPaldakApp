@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/imgv_item_rank_image"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_alignParentRight="false"
+        android:layout_margin="10dp"
+        android:layout_alignParentLeft="false"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_item_rank_rank"
+        android:layout_alignRight="@+id/imgv_item_rank_image"
+        android:layout_alignLeft="@+id/imgv_item_rank_image"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_alignParentBottom="false"
+        android:layout_below="@+id/imgv_item_rank_image" />
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgv_item_rank_image"
+        android:layout_marginLeft="20dp">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_item_rank_user_id"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlue" />
+
+        <TextView
+            android:id="@+id/tv_item_rank_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="NAME"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/tv_item_rank_user_id"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_item_rank_species"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="NAME"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/tv_item_rank_user_id"
+            android:textColor="@android:color/black"
+            android:layout_toRightOf="@+id/tv_item_rank_name" />
+
+        <TextView
+            android:text="최대힘"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_item_rank_max_label"
+            android:layout_below="@+id/tv_item_rank_name"
+            android:layout_alignStart="@+id/tv_item_rank_name"
+            android:textSize="14sp"
+            android:textColor="@color/colorGray" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_item_rank_max"
+            android:layout_toRightOf="@+id/tv_item_rank_max_label"
+            android:layout_alignBaseline="@+id/tv_item_rank_max_label"
+            android:textSize="14sp"
+            android:textColor="@color/colorTransParentBase70" />
+        <TextView
+            android:text="평균힘"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_item_rank_max_label"
+            android:id="@+id/tv_item_rank_avg_label"
+            android:textSize="14sp"
+            android:textColor="@color/colorGray" />
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_item_rank_avg"
+            android:layout_toRightOf="@id/tv_item_rank_avg_label"
+            android:layout_alignBaseline="@+id/tv_item_rank_avg_label"
+            android:textSize="14sp"
+            android:textColor="@color/colorTransParentBase70" />
+
+        <TextView
+            android:id="@+id/tv_item_rank_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"
+            android:text="date"
+            android:layout_alignBaseline="@+id/tv_item_rank_name"
+            android:layout_alignBottom="@+id/tv_item_rank_name"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

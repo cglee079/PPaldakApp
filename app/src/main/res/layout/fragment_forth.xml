@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+
+        <ImageView
+            app:srcCompat="@drawable/image_default_user"
+            android:id="@+id/imgv_user_image"
+            android:layout_margin="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="right"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:text="홍길동"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_user_name"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:paddingTop="6dp"
+            android:paddingBottom="25dp"
+            android:textStyle="normal|bold" />
+
+        <View
+            android:background="@color/colorTransParentBase10"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="5dp"></View>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="25dp">
+
+            <TextView
+                android:text="계정"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_forth_tv_info"
+                android:textSize="13sp"
+                android:textColor="@color/colorBase"
+                android:layout_weight="1"
+                android:paddingBottom="20dp"
+                android:paddingTop="15dp" />
+
+            <TextView
+                android:text="전화번호"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:paddingBottom="3dp"
+                android:id="@+id/fragment_forth_tv_telphone"
+                android:layout_weight="1"
+                android:textColor="@color/colorBase" />
+
+            <TextView
+                android:text="010-5656-8842"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:id="@+id/tv_user_tel"
+                android:layout_weight="1"
+                android:paddingBottom="20dp" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/colorTransParentBase10"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="1dp"></View>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="25dp">
+
+            <TextView
+                android:text="ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:id="@+id/fragment_forth_tv_id"
+                android:textColor="@color/colorBase"
+                android:layout_weight="1"
+                android:paddingBottom="3dp"
+                android:paddingTop="15dp" />
+
+            <TextView
+                android:text="hansung011"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:id="@+id/tv_user_id"
+                android:layout_weight="1"
+                android:paddingBottom="20dp" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/com_facebook_button_border_color_focused"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="1dp"></View>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="25dp">
+
+            <TextView
+                android:text="생년월일"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_forth_tv_birth"
+                android:textColor="@color/colorBase"
+                android:layout_weight="1"
+                android:paddingBottom="3dp"
+                android:textSize="16sp"
+                android:paddingTop="15dp" />
+
+            <TextView
+                android:text="1990년 10월 9일"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/cardview_dark_background"
+                android:id="@+id/tv_user_birth"
+                android:layout_weight="1"
+                android:paddingBottom="20dp" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/colorTransParentBase10"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="1dp"></View>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingBottom="15dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_user_profile"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape1"
+                android:text="프로필 수정"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape1"
+                android:text="로그아웃"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

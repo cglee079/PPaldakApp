@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort">
+        <item>이름순</item>
+        <item>어종순</item>
+        <item>최대힘순</item>
+        <item>평균힘순</item>
+        <item>시간순</item>
+    </string-array>
+
+    <string-array name="criteria">
+        <item>최대힘</item>
+        <item>평균힘</item>
+    </string-array>
+
+    <string-array name="period">
+        <item>모든 기간</item>
+        <item>오늘</item>
+        <item>이번 달</item>
+    </string-array>
+
+    <string-array name="fab_long_click">
+        <item>삭제</item>
+    </string-array>
+</resources>

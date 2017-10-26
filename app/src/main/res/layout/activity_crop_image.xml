@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_crop_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.changoo.fishing.activity.CropImageActivity"
+    android:orientation="vertical"
+    android:background="@android:color/black">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:layout_marginBottom="5dp">
+
+        <Button
+            android:text="@string/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_cancel"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:layout_margin="10dp" />
+
+        <Button
+            android:text="@string/btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_ok"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/btn_rotate"
+            android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_rotate"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:layout_margin="10dp" />
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.example.changoo.fishing.graphic.CropImage"
+            android:id="@+id/crop_view"
+            android:layout_weight="1" />
+
+    </RelativeLayout>
+
+</LinearLayout>

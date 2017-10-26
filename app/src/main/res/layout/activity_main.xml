@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.changoo.fishing.activity.MainActivity"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        app:elevation="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/colorPrimary"
+            android:minHeight="30dp"
+            android:theme="?attr/actionBarTheme">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/fragment_first_title"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgv_bluetooth"
+                app:srcCompat="@drawable/icon_bluetooth_unconnected"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            app:tabIndicatorColor="@color/colorBaseDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_newfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NEW FILE"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btn_fileread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FILE READ"
+                android:visibility="visible" />
+        </LinearLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_catchedfish"
+        android:background="@color/colorTransParentGray"
+        android:visibility="invisible">
+
+        <TextView
+            android:text="@string/tv_savefish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView10"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="50dp"
+            android:textSize="24sp"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_layout_count_catchedfish"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:layout_below="@+id/textView10"
+            android:text="#####" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/fam_catchedfIsh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            app:menu_animationDelayPerItem="50"
+            app:menu_backgroundColor="@android:color/transparent"
+            app:menu_buttonSpacing="0dp"
+            app:menu_colorNormal="@color/colorBase"
+            app:menu_colorPressed="@color/colorBaseDark"
+            app:menu_colorRipple="@color/colorBase"
+            app:menu_fab_size="normal"
+            app:menu_icon="@drawable/icon_catchedfish"
+            app:menu_labels_textColor="#FFFFFF"
+            app:menu_labels_textSize="14sp"
+            app:menu_openDirection="up"
+            app:menu_shadowColor="#66000000"
+            app:menu_shadowRadius="4dp"
+            app:menu_shadowXOffset="1dp"
+            app:menu_shadowYOffset="1dp"
+            app:menu_showShadow="true"
+            android:layout_gravity="bottom|end">
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+        <TextView
+            android:text="1"
+            android:id="@+id/tv_count_cathcedfish"
+            android:layout_alignBottom="@+id/fam_catchedfIsh"
+            android:layout_alignEnd="@+id/fam_catchedfIsh"
+            android:background="@drawable/shape4"
+            android:layout_margin="10dp"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_height="25dp"
+            android:layout_width="25dp"
+            android:textSize="10sp" />
+
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

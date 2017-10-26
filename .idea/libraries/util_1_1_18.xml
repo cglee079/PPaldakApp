@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="util-1.1.18">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.18/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.18/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.kakao.sdk/util/1.1.18/ccb9164d2d933703c0f35a360e4e7f8445dfb6fd/util-1.1.18-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
