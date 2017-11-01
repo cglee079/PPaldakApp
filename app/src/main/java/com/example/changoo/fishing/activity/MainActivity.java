@@ -127,8 +127,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onLongClick(View v) {
             final CatchedFishFAB catchedFishFAB = (CatchedFishFAB) v;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setItems(R.array.fab_long_click, new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(MainActivity.this).setItems(R.array.fab_long_click, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int selectedIndex) {
                             switch (selectedIndex) {
@@ -256,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -279,7 +277,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         }); // 프래그먼트 바뀔때 이벤트 리스너
 
@@ -311,10 +308,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         GPSPermission.checkGpsService(this);
-
-
     }
 
     @Override
@@ -523,8 +517,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -606,10 +598,11 @@ public class MainActivity extends AppCompatActivity {
                     Picasso.with(MainActivity.this).load(R.drawable.icon_bluetooth_unconnected).into(mBluetoothImgv);
 
                     if (deviceName != null) {
-                        if (deviceName.equals(mConnectedDevice))
+                        if (deviceName.equals(mConnectedDevice)){
                             Toast.makeText(mContext, "'" + deviceName + "'" + " 연결 되어있습니다.", Toast.LENGTH_LONG).show();
-                        else
+                        } else{
                             Toast.makeText(mContext, "'" + deviceName + "'" + " 연결 실패하였습니다.", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         Toast.makeText(mContext, "'" + "-----" + "'" + " 연결 실패하였습니다.", Toast.LENGTH_LONG).show();
                     }
@@ -617,7 +610,6 @@ public class MainActivity extends AppCompatActivity {
 
                 //연결 성공
                 case Constants.MESSAGE_BT_STATE_CONNECTED:
-
                     if (mService != null) {
 
                         //선택한 디바이스 이름을 가져옴
@@ -657,9 +649,9 @@ public class MainActivity extends AppCompatActivity {
 
                         ///////////////////////////////////////////////////////////////////////
                         try {
-                            if (MyFile.getMyFile() == null)
+                            if (MyFile.getMyFile() == null){
                                 MyFile.createFile(MainActivity.this);
-                            if (MyFile.getMyFile() != null) {
+                            } else if (MyFile.getMyFile() != null) {
                                 BufferedWriter file = new BufferedWriter(new FileWriter(MyFile.getMyFile(), true));
                                 String str2 = Time.getDate() + "  " + Time.getTime() + "        " + angleStr + "     " + powerStr;
                                 file.write(str2);
@@ -670,8 +662,9 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         ///////////////////////////////////////////////////////////////////////
-                        if (mFirst_fragment != null)
+                        if (mFirst_fragment != null){
                             mFirst_fragment.updateData(new Data(angle, power));
+                        }
                     }
                     break;
 
@@ -693,16 +686,14 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("bitedTime", bitedTime);
                     startActivity(intent);
                     break;
+                    
                 case FirstFragment.DO_MISSING: //놓침
                     break;
 
                 case FirstFragment.DO_CATHCED: // 낚음
-
                     Fish catchedFish = (Fish) msg.obj;
                     addCatchedFish(catchedFish);
-
                     mCatchedFishsFAM.toggle(true);
-
                     break;
             }
         }
@@ -841,7 +832,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d(this.TAG, mFish.toHttpParameter());
             String result = null;
             try {
-
                 //serverURL 가져옴
                 reqeustURL = HttpManager.getSaveFishURL();
 
@@ -860,7 +850,6 @@ public class MainActivity extends AppCompatActivity {
 
                 connect.setConnectTimeout(3000);
 
-
                 connect.setRequestMethod("POST"); // post 통신
                 connect.setDoOutput(true); // 쓰기모드 지정
                 connect.setDoInput(true); // 읽기모드 지정
@@ -871,7 +860,6 @@ public class MainActivity extends AppCompatActivity {
                 outputStream.write(parameter.getBytes());
                 outputStream.flush();
                 outputStream.close();
-
 
                 InputStream is = connect.getInputStream(); //input스트림 개방
 

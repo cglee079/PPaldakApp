@@ -89,7 +89,7 @@ public class DeviceListActivity extends Activity {
         mActivityHandler = new ActivityHandler();
 
         // state 텍스트뷰 가져옴
-        mStateTv=(TextView)findViewById(R.id.tv_device_state);
+        mStateTv = (TextView)findViewById(R.id.tv_device_state);
 
         //  Scan 버튼 설정
         mScanBtn = (Button) findViewById(R.id.btn_scan);
@@ -104,7 +104,7 @@ public class DeviceListActivity extends Activity {
             }
         });
 
-        mStateProgressBar=(ProgressBar)findViewById(R.id.pb_state);
+        mStateProgressBar = (ProgressBar)findViewById(R.id.pb_state);
 
         // 등록된, 연결가능 어댑터 생성
         mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.listview_item_device);
@@ -119,7 +119,6 @@ public class DeviceListActivity extends Activity {
         ListView newDevicesListView = (ListView) findViewById(R.id.lv_new_devices);
         newDevicesListView.setAdapter(mNewDevicesArrayAdapter);
         newDevicesListView.setOnItemClickListener(mDeviceClickListener);
-
 
         // 블루투스 어댑터 가져옴
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -160,7 +159,6 @@ public class DeviceListActivity extends Activity {
         // Indicate scanning in the title
         setProgressBarIndeterminateVisibility(true);
         mStateTv.setText(R.string.tv_bluetooth_state_searching);
-
 
         // Turn on sub-title for new devices
         findViewById(R.id.tv_new_devices).setVisibility(View.VISIBLE);

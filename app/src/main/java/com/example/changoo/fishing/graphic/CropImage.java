@@ -50,8 +50,7 @@ public class CropImage extends ImageView {
     private boolean orientation = false;
     private int mPictureAngle=0;
 
-
-    Paint mPaint;
+    private Paint mPaint;
 
     public CropImage(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -69,13 +68,13 @@ public class CropImage extends ImageView {
         resizeOpts.inSampleSize = 2;
         try {
             mPicture = BitmapFactory.decodeStream(new FileInputStream(mImagePath), null, resizeOpts);
+           
             // 이미지를 상황에 맞게 회전시킨다
-            ExifInterface exif = new ExifInterface(mImagePath);
-            int exifOrientation = exif.getAttributeInt(
-                    ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-            int exifDegree = exifOrientationToDegrees(exifOrientation);
-            mPictureAngle=exifDegree;
-            mPicture = rotate(mPicture,mPictureAngle);
+            ExifInterface exif 	= new ExifInterface(mImagePath);
+            int exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int exifDegree 		= exifOrientationToDegrees(exifOrientation);
+            mPictureAngle 		= exifDegree;
+            mPicture	 		= rotate(mPicture,mPictureAngle);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,18 +85,19 @@ public class CropImage extends ImageView {
         Log.i(TAG, "VIEW SIZE " + mDisplayWidth + " " + "*" + "  " + mDisplayHeight);
 
 
-        mReScaleWidth = mDisplayWidth;
-        scaleRatio = mDisplayWidth / mPicture.getWidth();
-        mReScaleHeight = mPicture.getHeight() * scaleRatio;
+        mReScaleWidth 	= mDisplayWidth;
+        scaleRatio 		= mDisplayWidth / mPicture.getWidth();
+        mReScaleHeight 	= mPicture.getHeight() * scaleRatio;
 
         mPicture = Bitmap.createScaledBitmap(mPicture, (int) mDisplayWidth, (int) mReScaleHeight, false);
 
         Log.i(TAG, "PICTURE RESCALE SIZE :  " + mPicture.getWidth() + " " + "*" + "  " + mPicture.getHeight());
 
-        if (mPicture.getWidth() < mPicture.getHeight())
+        if (mPicture.getWidth() < mPicture.getHeight()){
             orientation = true;
-        else
-            orientation=false;
+        } else{
+            orientation = false;
+        }
 
         centerX = mPicture.getWidth() / 2;
         centerY = mPicture.getHeight() / 2;
@@ -112,7 +112,6 @@ public class CropImage extends ImageView {
             ex = centerX + centerY;
             sy = 0;
             ey = mPicture.getHeight();
-
         }
 
 
@@ -125,7 +124,6 @@ public class CropImage extends ImageView {
 
     public void onDraw(Canvas canvas) {
         // 사각형 라인 그리기
-
         canvas.drawBitmap(mPicture, 0, 0, null);
 
         canvas.drawCircle(sx, sy, 20, mPaint);
@@ -140,13 +138,13 @@ public class CropImage extends ImageView {
 
         canvas.drawLine(sx, (sy + ey) / 2, ex, (sy + ey) / 2, mPaint);
         canvas.drawLine((sx + ex) / 2, sy, (sx + ex) / 2, ey, mPaint);
-
-
     }
 
     // 이벤트 처리, 현재의 그리기 모드에 따른 점의 위치를 조정
-    float dx = 0, dy = 0;
-    float oldx, oldy;
+    float dx = 0;
+    float dy = 0;
+    float oldx;
+    float oldy;
     boolean bsx, bsy, bex, bey;
     boolean bMove = false;
 
@@ -158,38 +156,42 @@ public class CropImage extends ImageView {
             oldx = x;
             oldy = y;
 
-// 눌려진곳이 선 근처인가 확인
-            if ((x > sx - DEP) && (x < sx + DEP))
+            // 눌려진곳이 선 근처인가 확인
+            if ((x > sx - DEP) && (x < sx + DEP)){
                 bsx = true;
-            else if ((x > ex - DEP) && (x < ex + DEP))
+            } else if ((x > ex - DEP) && (x < ex + DEP)){
                 bex = true;
-
-            if ((y > sy - DEP) && (y < sy + DEP))
+            } 
+            
+            if ((y > sy - DEP) && (y < sy + DEP)){
                 bsy = true;
-            else if ((y > ey - DEP) && (y < ey + DEP))
+            } else if ((y > ey - DEP) && (y < ey + DEP)) {
                 bey = true;
+            }
 
             // 어느 하나라도 선택이 되었다면 move에서 값 변경
-            if ((bsx || bex || bsy || bey))
+            if ((bsx || bex || bsy || bey)) {
                 bMove = false;
-            else if (((x > sx + DEP) && (x < ex - DEP))
-                    && ((y > sy + DEP) && (y < ey - DEP)))
+            } else if (((x > sx + DEP) && (x < ex - DEP)) && ((y > sy + DEP) && (y < ey - DEP))){
                 bMove = true;
+            }
+            
             invalidate(); // 움직일때 다시 그려줌
             return true;
         }
 
         if (e.getAction() == MotionEvent.ACTION_MOVE) {
-            if (bsx) sx = x;
-            if (bex) ex = x;
-            if (bsy) sy = y;
-            if (bey) ey = y;
+            if (bsx) { sx = x; }
+            if (bex) { ex = x; }
+            if (bsy) { sy = y; }
+            if (bey) { ey = y; }
 
             // 사각형의 시작 라인보다 끝라인이 크지않게 처리
             if (ex <= sx + DEP) {
                 ex = sx + DEP;
                 return true;
             }
+            
             if (ey <= sy + DEP) {
                 ey = sy + DEP;
                 return true;
@@ -205,7 +207,6 @@ public class CropImage extends ImageView {
 
                 sy -= dy;
                 ey -= dy;
-
 
                 if (sx <= 1) sx = 1;
                 if (ex >= mDisplayWidth - 1) ex = mDisplayWidth - 1;
@@ -236,7 +237,6 @@ public class CropImage extends ImageView {
 
         // ACTION_UP 이면 그리기 종료
         if (e.getAction() == MotionEvent.ACTION_UP) {
-
             bsx = bex = bsy = bey = bMove = false;
             return true;
         }
@@ -290,7 +290,7 @@ public class CropImage extends ImageView {
         resizeOpts.inSampleSize = 2;
         try {
             mPicture = BitmapFactory.decodeStream(new FileInputStream(mImagePath), null, resizeOpts);
-            mPictureAngle+=90;
+            mPictureAngle += 90;
             mPicture = rotate(mPicture,mPictureAngle);
         } catch (Exception e) {
             e.printStackTrace();
@@ -299,18 +299,19 @@ public class CropImage extends ImageView {
         Log.i(TAG, "PICTURE SIZE " + mPicture.getWidth() + " " + "*" + "  " + mPicture.getHeight());
         Log.i(TAG, "VIEW SIZE " + mDisplayWidth + " " + "*" + "  " + mDisplayHeight);
 
-        mReScaleWidth = mDisplayWidth;
-        scaleRatio = mDisplayWidth / mPicture.getWidth();
-        mReScaleHeight = mPicture.getHeight() * scaleRatio;
+        mReScaleWidth 	= mDisplayWidth;
+        scaleRatio		= mDisplayWidth / mPicture.getWidth();
+        mReScaleHeight 	= mPicture.getHeight() * scaleRatio;
 
         mPicture = Bitmap.createScaledBitmap(mPicture, (int) mDisplayWidth, (int) mReScaleHeight, false);
 
         Log.i(TAG, "PICTURE RESCALE SIZE :  " + mPicture.getWidth() + " " + "*" + "  " + mPicture.getHeight());
 
-        if (mPicture.getWidth() < mPicture.getHeight())
+        if (mPicture.getWidth() < mPicture.getHeight()){
             orientation = true;
-        else
-            orientation=false;
+        } else {
+            orientation = false;
+        }
 
         centerX = mPicture.getWidth() / 2;
         centerY = mPicture.getHeight() / 2;
@@ -331,26 +332,19 @@ public class CropImage extends ImageView {
         invalidate();
     }
 
-    public Bitmap rotate(Bitmap bitmap, int degrees)
-    {
-        if(degrees != 0 && bitmap != null)
-        {
+    public Bitmap rotate(Bitmap bitmap, int degrees) {
+        if(degrees != 0 && bitmap != null) {
             Matrix m = new Matrix();
-            m.setRotate(degrees, (float) bitmap.getWidth() / 2,
-                    (float) bitmap.getHeight() / 2);
+            m.setRotate(degrees, (float) bitmap.getWidth() / 2, (float) bitmap.getHeight() / 2);
 
-            try
-            {
-                Bitmap converted = Bitmap.createBitmap(bitmap, 0, 0,
-                        bitmap.getWidth(), bitmap.getHeight(), m, true);
-                if(bitmap != converted)
-                {
+            try {
+                Bitmap converted = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, true);
+                if(bitmap != converted) {
                     bitmap.recycle();
                     bitmap = converted;
                 }
             }
-            catch(OutOfMemoryError ex)
-            {
+            catch(OutOfMemoryError ex) {
                 // 메모리가 부족하여 회전을 시키지 못할 경우 그냥 원본을 반환합니다.
             }
         }

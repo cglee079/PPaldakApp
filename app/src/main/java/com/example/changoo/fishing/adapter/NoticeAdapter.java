@@ -16,13 +16,13 @@ import java.util.ArrayList;
 
 public class NoticeAdapter extends android.widget.BaseAdapter {
 
-    Context mContext = null;
-    ArrayList<Notice> mData = null;
-    LayoutInflater mLayoutInflater = null;
+	private Context mContext = null;
+	private ArrayList<Notice> mData = null;
+	private LayoutInflater mLayoutInflater = null;
 
     public NoticeAdapter(Context context, ArrayList<Notice> data) {
-        mContext = context;
-        mData = data;
+        mContext 	= context;
+        mData 		= data;
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
@@ -44,12 +44,11 @@ public class NoticeAdapter extends android.widget.BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View item;
-        if(view==null)
+        if(view == null){
             item = mLayoutInflater.inflate(R.layout.listview_item_notice, null);
-        else
-            item=view;
-
-
+        } else {
+            item = view;
+        }
 
         Notice notice=mData.get(i);
 
@@ -65,7 +64,6 @@ public class NoticeAdapter extends android.widget.BaseAdapter {
     public void add(Notice notice){
         mData.add(0,notice);
         notifyDataSetChanged();
-
     }
 
 

@@ -14,7 +14,7 @@ import com.example.changoo.fishing.R;
 public class SplashActivity extends AppCompatActivity {
 
     //로딩 이미지 애니매이션
-    ImageView imageView;
+	private ImageView imageView;
     private AnimationDrawable aniFrame;
 
     @Override
@@ -27,9 +27,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         imageView = (ImageView) findViewById(R.id.animation_splash);
-
-        //xml과 연결
-        imageView.setBackgroundResource(R.drawable.splash_list);
+        imageView.setBackgroundResource(R.drawable.splash_list); //xml과 연결
+        
         aniFrame = (AnimationDrawable) imageView.getBackground();
         aniFrame.start();//애니매이션 시작
 
@@ -46,7 +45,6 @@ public class SplashActivity extends AppCompatActivity {
                 //페이드 인 페이드 아웃 효과 res/anim/fadein, fadeout xml을 만들어 줘야 합니다.
                 //다른 전환효과도 응용가능
                 //overridePendingTransition(R.anim.fadein, R.anim.fadein);
-
             }
         };
 

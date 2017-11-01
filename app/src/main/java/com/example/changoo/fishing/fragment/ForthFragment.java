@@ -29,13 +29,13 @@ import static android.content.Context.MODE_PRIVATE;
 public class ForthFragment extends Fragment {
     public static final String TAG = "FORTH_FRAGMENT";
 
-    ImageView mUserImgv;
-    TextView mNameTv;
-    TextView mPhoneNumberTv;
-    TextView mIdTv;
-    TextView mBirthTv;
-    Button mLogoutBtn;
-    Button mEditPrifileBtn;
+    private ImageView mUserImgv;
+    private TextView mNameTv;
+    private TextView mPhoneNumberTv;
+    private TextView mIdTv;
+    private TextView mBirthTv;
+    private Button mLogoutBtn;
+    private Button mEditPrifileBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,39 +46,37 @@ public class ForthFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forth, container, false);
         mUserImgv = (ImageView) view.findViewById(R.id.imgv_user_image);
 
-        mNameTv = (TextView) view.findViewById(R.id.tv_user_name);
-        mPhoneNumberTv = (TextView) view.findViewById(R.id.tv_user_tel);
-        mIdTv = (TextView) view.findViewById(R.id.tv_user_id);
-        mBirthTv = (TextView) view.findViewById(R.id.tv_user_birth);
-        mLogoutBtn = (Button) view.findViewById(R.id.btn_logout);
-        mLogoutBtn.setOnClickListener(mButtonOnClickListener);
+        mNameTv 		= (TextView) view.findViewById(R.id.tv_user_name);
+        mPhoneNumberTv 	= (TextView) view.findViewById(R.id.tv_user_tel);
+        mIdTv 			= (TextView) view.findViewById(R.id.tv_user_id);
+        mBirthTv 		= (TextView) view.findViewById(R.id.tv_user_birth);
+        mLogoutBtn 		= (Button) view.findViewById(R.id.btn_logout);
         mEditPrifileBtn = (Button) view.findViewById(R.id.btn_user_profile);
+        
+        mLogoutBtn.setOnClickListener(mButtonOnClickListener);
         mEditPrifileBtn.setOnClickListener(mButtonOnClickListener);
 
         User user = User.getInstance();
 
-        if (user.getImageFile() == null)
+        if (user.getImageFile() == null){
             Picasso.with(this.getActivity()).load(R.drawable.image_default_user).transform(new CircleTransform()).into(mUserImgv);
-        else
+        } else {
             Picasso.with(this.getActivity()).load(HttpManager.getUserImageURL() + user.getImageFile()).transform(new CircleTransform()).into(mUserImgv);
-
+        }
 
         mIdTv.setText(user.getId());
 
         String name = user.getName();
-        if (name == null)
-            name = "미입력";
+        if (name == null) { name = "미입력"; }
         mNameTv.setText(name);
 
         String birth = user.getBirth();
-        if (birth == null)
-            birth = "미입력";
+        if (birth == null) { birth = "미입력"; }
         mBirthTv.setText(birth);
 
 
         String phoneNumber = user.getPhoneNumber();
-        if (phoneNumber == null)
-            phoneNumber = "미입력";
+        if (phoneNumber == null) { phoneNumber = "미입력"; }
         mPhoneNumberTv.setText(phoneNumber);
 
         return view;

@@ -36,12 +36,12 @@ public class FirstFragment extends Fragment {
     public static final String TAG = "FIRST_FRAGMENT";
     public static final String CONNECTED_DEVICE = "CONNECTED_DEVICE";
 
-    public static final int DO_FIXED = 0;
-    public static final int DO_NOFIXED = 1;
-    public static final int DO_BITED = 2;
-    public static final int DO_MISSING = 3;
-    public static final int DO_CATHCED = 4;
-    public static final int DO_FIGHTED = 5;
+    public static final int DO_FIXED 	= 0;
+    public static final int DO_NOFIXED 	= 1;
+    public static final int DO_BITED 	= 2;
+    public static final int DO_MISSING 	= 3;
+    public static final int DO_CATHCED 	= 4;
+    public static final int DO_FIGHTED 	= 5;
 
 
     private String mConnectedDevice = null;
@@ -85,6 +85,7 @@ public class FirstFragment extends Fragment {
                     super.handleMessage(msg);
                 }
             };
+            
             mDataManager = new DataManager(getActivity(), mDataHandler);
 
             if (getArguments() != null) {
@@ -99,13 +100,13 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v;
 
-
         //연결된 디바이스가 있는지 확인
         Log.i(TAG, "mConnectedDevice is " + mConnectedDevice);
         if (mConnectedDevice == null) {
             connected = false;
-        } else
+        } else {
             connected = true;
+        }
 
 
         //연결된 디바이스가 없는 경우
@@ -118,8 +119,6 @@ public class FirstFragment extends Fragment {
                     doScan(); //
                 }
             });
-
-
         }
 
         //연결된 디바이스가 있는 경우
@@ -197,7 +196,6 @@ public class FirstFragment extends Fragment {
      * Public Method
      */
 
-
     //프래그먼트 갱신
     public void reload() {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -215,7 +213,6 @@ public class FirstFragment extends Fragment {
         updateGraphic(data.getPower(), maxPower, avgPower);
 
     }
-
 
     /**
      * Private Method
@@ -244,7 +241,6 @@ public class FirstFragment extends Fragment {
         mNoticeAdapter.add(new Notice(mNoticeTimeTv.getText().toString(), mNoticeMsgTv.getText().toString()));
 
         switch (msg.what) {
-
             case DataManager.DO_FIXED:
                 mNoticeTimeTv.setText(Time.getTime());
                 mNoticeMsgTv.setText(R.string.notice_fixed);

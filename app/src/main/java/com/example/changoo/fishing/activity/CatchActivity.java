@@ -86,7 +86,6 @@ public class CatchActivity extends AppCompatActivity{
 
         mFishImgv = (ImageView) findViewById(R.id.imgv_catch_fish);
         Picasso.with(this).load(R.drawable.icon_camera).transform(new CircleTransform()).into(mFishImgv);
-
         mFishImgv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,30 +97,32 @@ public class CatchActivity extends AppCompatActivity{
         mMaxPowerTv = (TextView) findViewById(R.id.tv_maxpower);
         mAvgPowerTv = (TextView) findViewById(R.id.tv_avgpower);
         mDateTimeTv = (TextView) findViewById(R.id.tv_datetime);
-        mTimeingTv = (TextView) findViewById(R.id.tv_timeing);
-        mGPSTv = (TextView) findViewById(R.id.tv_gps);
-        mSaveBtn = (Button) findViewById(R.id.btn_save);
+        mTimeingTv 	= (TextView) findViewById(R.id.tv_timeing);
+        mGPSTv 		= (TextView) findViewById(R.id.tv_gps);
+        mSaveBtn 	= (Button) findViewById(R.id.btn_save);
 
-        mNameEt = (EditText) findViewById(R.id.et_name);
-        mSpeciesEt = (EditText) findViewById(R.id.et_species);
-
+        mNameEt 	= (EditText) findViewById(R.id.et_name);
+        mSpeciesEt 	= (EditText) findViewById(R.id.et_species);
 
         mMaxPowerTv.setText(Formatter.setFormat(mFish.getMaxFower()) + " F");
         mAvgPowerTv.setText(Formatter.setFormat(mFish.getAvgFower()) + " F");
         mDateTimeTv.setText(mFish.getDate() + " " + mFish.getTime());
-        mTimeingTv.setText(mFish.getTimeing()+"");
+        mTimeingTv.setText(mFish.getTimeing() + "");
         mGPSTv.setText(getAddress(this, mFish.getGPS_lat(), mFish.getGPS_lot()));
 
         mSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String insertName = mNameEt.getText().toString();
-                if (insertName.length() != 0)
+                if (insertName.length() != 0){
                     mFish.setName(insertName);
+                }
 
                 String insertSpecies = mSpeciesEt.getText().toString();
-                if (insertSpecies.length() != 0)
+                if (insertSpecies.length() != 0){
                     mFish.setSpecies(insertSpecies);
+                }
+                
                 Intent data = new Intent();
                 data.putExtra("fish", mFish);
                 setResult(RESULT_OK, data);
@@ -132,8 +133,6 @@ public class CatchActivity extends AppCompatActivity{
 
         //시간 설정
         mDateTimeTv.setText(Time.getDate() + "  " + Time.getTime());
-
-
     }
 
     /**

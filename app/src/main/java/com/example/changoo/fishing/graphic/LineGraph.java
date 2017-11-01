@@ -220,7 +220,6 @@ public class LineGraph extends View {
      * Customer Classs  // DATA_QUEUE
      */
     class DataQueue {
-
         Queue<Double> datas = null;
 
         public DataQueue() {
@@ -228,9 +227,8 @@ public class LineGraph extends View {
         }
 
         public void add(Double data) {
-            if (datas.size() >= VISIBLE_POINT) {
-                //overflow
-                datas.poll();
+            if (datas.size() >= VISIBLE_POINT) { //overflow
+                datas.poll();  
             }
 
             datas.offer(data);

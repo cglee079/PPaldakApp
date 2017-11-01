@@ -44,20 +44,20 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
      * 오차범위 - 0.2
      */
 
-    public static final int DO_FIXED = 0;
-    public static final int DO_NOFIXED = 1;
-    public static final int DO_BITED = 2;
-    public static final int DO_RUNAWAY = 6;
-    public static final int DO_MISSING = 3;
-    public static final int DO_CATCHED = 4;
-    public static final int DO_FIGHTED = 5;
+    public static final int DO_FIXED 	= 0;
+    public static final int DO_NOFIXED 	= 1;
+    public static final int DO_BITED 	= 2;
+    public static final int DO_RUNAWAY 	= 6;
+    public static final int DO_MISSING 	= 3;
+    public static final int DO_CATCHED 	= 4;
+    public static final int DO_FIGHTED 	= 5;
 
-    public static final int STATE_WAIT = 1000;
-    public static final int STATE_BITED = 1001; // 잡혔는지 or 잡히지 않았는지
-    public static final int STATE_RUNAWAY = 1002; // 잡혔는지 or 잡히지 않았는지
-    public static final int STATE_FIGTHED = 1003; //
-    public static final int STATE_CATCHED = 1004; //
-    public static final int STATE_FIXED = 1005;
+    public static final int STATE_WAIT 		= 1000;
+    public static final int STATE_BITED 	= 1001; // 잡혔는지 or 잡히지 않았는지
+    public static final int STATE_RUNAWAY 	= 1002; // 잡혔는지 or 잡히지 않았는지
+    public static final int STATE_FIGTHED 	= 1003; //
+    public static final int STATE_CATCHED 	= 1004; //
+    public static final int STATE_FIXED 	= 1005;
 
     ///************************ GPS ********************///
 
@@ -67,21 +67,23 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
 
     /////////////////////////////////////////////////////////
 
-    private Fish mFish=null;
+    private Fish mFish = null;
 
     private int state = STATE_WAIT;
 
     private int fixedTime = 0;
     private int catchedTime = 0;
     private int runAwayTime = 0;
-
     private long timing = 0;
+    
+    private final double errorRange = 0.05; // 오차 범위
     private final double bitedPower = 0.2; // 기준점 포인트, catchPoint 만큼 차이 날 경우 물고기가 입질은 뭄
     private final double fightPower =0.6; // 기준점 포인트, catchPoint 만큼 차이 날 경우 물고기가 입질은 뭄
     private final int fixAngle = 1; // 기준점 포인트, catchPoint 만큼 차이 날 경우 물고기가 입질은 뭄
+   
     private Data before_data = null; // 직전 데이터 (kg)
     private Data data = null; //데이터 (kg)
-    private double errorRange = 0.05; // 오차 범위
+   
     private ArrayList<Data> mDatas; // 잡힌 물고기 힘의 집합 //catching 후 부터 입력됨
 
 
@@ -138,7 +140,6 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
                 if (mDatas.get(i).getPower() > max)
                     max = mDatas.get(i).getPower();
             }
-
             return max;
         } else
             return 0;
@@ -169,10 +170,11 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
 
     private void checkFixed() {
         if (data != null && before_data != null) {
-            if (before_data.getAngle() < data.getAngle() + fixAngle && before_data.getAngle() > data.getAngle() - fixAngle)
+            if (before_data.getAngle() < data.getAngle() + fixAngle && before_data.getAngle() > data.getAngle() - fixAngle){
                 fixedTime++;
-            else
+            } else{
                 fixedTime = 0;
+            }
 
             if (fixedTime > 10) {//0
                 fixedTime = 0;
@@ -183,9 +185,8 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
     }
 
     private void checkNoFixed() {
-        if (before_data.getAngle() < data.getAngle() + fixAngle && before_data.getAngle() > data.getAngle() - fixAngle)
-            ;
-        else {
+        if (before_data.getAngle() < data.getAngle() + fixAngle && before_data.getAngle() > data.getAngle() - fixAngle){
+        } else {
             state = STATE_WAIT;
             mHandler.obtainMessage(DO_NOFIXED).sendToTarget();
         }
@@ -216,14 +217,15 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
                     state = STATE_CATCHED;
                     catched();
                 }
-            } else
+            } else {
                 catchedTime = 0;
+            }
         }
     }
 
 
     private void checkBited() { //잡혔는지 확인
-        if(state==STATE_FIXED) {
+        if(state == STATE_FIXED) {
             double gapPower = 0;
             if (data != null && before_data != null) {
                 gapPower = data.getPower() - before_data.getPower();
@@ -267,7 +269,7 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
         //new Fish
         mFish = new Fish();
 
-        //Fish_id = UserID+ Time;
+        //Fish_id = UserID + Time;
         String fish_id = User.getInstance().getId() + "_" + Formatter.toDateTime(time);
 
         mFish.setId(fish_id);
@@ -293,9 +295,10 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
         before_data = null;
         data = null;
         mDatas.clear();
+        
         catchedTime = 0;
-        fixedTime = 0;
-        runAwayTime =0;
+        fixedTime 	= 0;
+        runAwayTime = 0;
     }
 
     /**
@@ -308,7 +311,6 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
         if (GPS != null) {
             mFish.setGPS_lat(GPS[0]);
             mFish.setGPS_lot(GPS[1]);
-
         } else {
 
         }
@@ -350,8 +352,9 @@ public class DataManager implements GoogleApiClient.ConnectionCallbacks,
                 GPS[0] = mCurrentLocation.getLatitude();
                 GPS[1] = mCurrentLocation.getLongitude();
                 return GPS;
-            } else
+            } else {
                 return null;
+            }
 
         } catch (SecurityException e) {
             e.printStackTrace();

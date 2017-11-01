@@ -8,10 +8,6 @@ import java.util.Date;
  */
 
 public class Time {
-
-
-
-
     public static long capture() {
         return System.currentTimeMillis();
     }
@@ -30,7 +26,6 @@ public class Time {
     public static String getDateTime() {
         long time = System.currentTimeMillis();
         return Formatter.toDateTime(time);
-
     }
 
     public static String getCurMonth() {

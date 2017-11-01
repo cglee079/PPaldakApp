@@ -5,8 +5,8 @@ package com.example.changoo.fishing.data;
  */
 
 public class Data {
-    Double angle;
-    Double power;
+	private Double angle;
+	private Double power;
 
     public Data(Double angle, Double power) {
         this.angle = angle;

@@ -26,18 +26,18 @@ import java.util.List;
 import java.util.Locale;
 
 public class FishInfoActivity extends AppCompatActivity {
-    private static final String TAG = "MyFishInfoActivity";
+    private static final String TAG = "FishInfoActivity";
     private Fish mFish;
-    TextView mUserIdTv;
-    TextView mNameTv;
-    TextView mMaxTv;
-    TextView mAvgTv;
-    TextView mSpeciesTv;
-    TextView mTimeingTv;
-    TextView mTimeTv;
-    TextView mGPSTv;
-    Button mCheckBtn;
-    ImageView mFishImgv;
+    private TextView mUserIdTv;
+    private TextView mNameTv;
+    private TextView mMaxTv;
+    private TextView mAvgTv;
+    private TextView mSpeciesTv;
+    private TextView mTimeingTv;
+    private TextView mTimeTv;
+    private TextView mGPSTv;
+    private Button mCheckBtn;
+    private ImageView mFishImgv;
 
     @Override
     protected void onStart() {
@@ -53,14 +53,14 @@ public class FishInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();//Fish 객체 저장
         mFish = intent.getParcelableExtra("fish");
 
-        mUserIdTv = (TextView) findViewById(R.id.tv_info_user_id);
-        mNameTv = (TextView) findViewById(R.id.tv_info_name);
-        mSpeciesTv = (TextView) findViewById(R.id.tv_info_species);
-        mMaxTv = (TextView) findViewById(R.id.tv_info_maxpower);
-        mAvgTv = (TextView) findViewById(R.id.tv_info_avgpower);
-        mTimeTv = (TextView) findViewById(R.id.tv_info_datetime);
-        mTimeingTv=(TextView)findViewById(R.id.tv_info_timing);
-        mGPSTv = (TextView) findViewById(R.id.tv_info_gps);
+        mUserIdTv 	= (TextView) findViewById(R.id.tv_info_user_id);
+        mNameTv 	= (TextView) findViewById(R.id.tv_info_name);
+        mSpeciesTv 	= (TextView) findViewById(R.id.tv_info_species);
+        mMaxTv 		= (TextView) findViewById(R.id.tv_info_maxpower);
+        mAvgTv 		= (TextView) findViewById(R.id.tv_info_avgpower);
+        mTimeTv 	= (TextView) findViewById(R.id.tv_info_datetime);
+        mTimeingTv	= (TextView) findViewById(R.id.tv_info_timing);
+        mGPSTv 		= (TextView) findViewById(R.id.tv_info_gps);
 
         mFishImgv = (ImageView) findViewById(R.id.imgv_info_fish);
 
@@ -74,10 +74,11 @@ public class FishInfoActivity extends AppCompatActivity {
             mTimeingTv.setText(mFish.getTimeing() +" 초");
             mGPSTv.setText(getAddress(this, mFish.getGPS_lat(), mFish.getGPS_lot()));
 
-            if (mFish.getImageFile().equals("null"))
+            if (mFish.getImageFile().equals("null")){
                 Picasso.with(this).load(R.drawable.image_default_fish).transform(new CircleTransform()).into(mFishImgv);
-            else
+            } else {
                 Picasso.with(this).load(HttpManager.getFishImageURL() + mFish.getImageFile()).transform(new CircleTransform()).into(mFishImgv);
+            }
 
             mCheckBtn  = (Button) findViewById(R.id.btn_fish_info_check);
             mCheckBtn.setOnClickListener(new View.OnClickListener() {

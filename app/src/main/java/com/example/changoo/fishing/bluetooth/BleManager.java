@@ -81,13 +81,13 @@ public class BleManager {
         mState = STATE_NONE;
         mHandler = h;
         mContext = context;
-        if (mContext == null)
-            return;
+        if (mContext == null){ return; }
     }
 
     public synchronized static BleManager getInstance(Context c, Handler h) {
-        if (mBleManager == null)
+        if (mBleManager == null){
             mBleManager = new BleManager(c, h);
+        }
 
         return mBleManager;
     }
@@ -107,8 +107,9 @@ public class BleManager {
         mGattCharacteristics.clear();
         mWritableCharacteristics.clear();
 
-        if (mContext == null)
+        if (mContext == null) {
             return;
+        }
 
         // Don't forget this!!
         // Unregister broadcast listeners
@@ -184,16 +185,14 @@ public class BleManager {
         final int charaProp = chr.getProperties();
         if (((charaProp & BluetoothGattCharacteristic.PROPERTY_WRITE) |
                 (charaProp & BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE)) > 0) {
-
             return true;
         } else {
-
             return false;
         }
     }
 
     private boolean isReadableCharacteristic(BluetoothGattCharacteristic chr) {
-        if (chr == null) return false;
+        if (chr == null){ return false;}
 
         final int charaProp = chr.getProperties();
         if ((charaProp & BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
@@ -206,7 +205,7 @@ public class BleManager {
     }
 
     private boolean isNotificationCharacteristic(BluetoothGattCharacteristic chr) {
-        if (chr == null) return false;
+        if (chr == null) { return false; }
 
         final int charaProp = chr.getProperties();
         if ((charaProp & BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
@@ -264,8 +263,9 @@ public class BleManager {
     public boolean scanLeDevice(final boolean enable) {
         boolean isScanStarted = false;
         if (enable) {
-            if (mState == STATE_SCANNING)
+            if (mState == STATE_SCANNING){
                 return false;
+            }
 
             if (mBluetoothAdapter.startLeScan(mLeScanCallback)) {
                 mState = STATE_SCANNING;
@@ -300,9 +300,10 @@ public class BleManager {
      *블루투스 디바이스 연결
      */
     public boolean connectGatt(Context c, boolean bAutoReconnect, BluetoothDevice device) {
-        if (c == null || device == null)
+        if (c == null || device == null){
             return false;
-
+        }
+        
         mGattServices.clear();
         mGattCharacteristics.clear();
         mWritableCharacteristics.clear();
@@ -320,8 +321,9 @@ public class BleManager {
      *블루투스 디바이스 연결
      */
     public boolean connectGatt(Context c, boolean bAutoReconnect, String address) {
-        if (c == null || address == null)
+        if (c == null || address == null){
             return false;
+        }
 
         if (mBluetoothGatt != null && mDefaultDevice != null
                 && address.equals(mDefaultDevice.getAddress())) {
@@ -331,8 +333,7 @@ public class BleManager {
             }
         }
 
-        BluetoothDevice device =
-                BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
+        BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
         if (device == null) {
             Log.d("BTC Template", "# Device not found.  Unable to connect.");
             return false;
@@ -403,17 +404,14 @@ public class BleManager {
                 Log.d(TAG, "# Disconnected from GATT server.");
 
                 //연결 시도 중 연결 실패
-                if(mState==STATE_CONNECTING)
+                if(mState == STATE_CONNECTING){
                     mHandler.obtainMessage(MESSAGE_STATE_CHANGE, STATE_CONNECT_FAIL, 0).sendToTarget();
-
-                // 연결되있는 상태에서 연결 실패
-                else if(mState==STATE_CONNECTED) {
+                } else if(mState == STATE_CONNECTED) { // 연결되있는 상태에서 연결 실패
                     mHandler.obtainMessage(MESSAGE_STATE_CHANGE, STATE_DISCONNECT, 0).sendToTarget();
                     gatt.disconnect();
                 }
 
                 mState = STATE_IDLE;
-
 
                 mBluetoothGatt = null;
                 mGattServices.clear();

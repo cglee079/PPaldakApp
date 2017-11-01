@@ -25,7 +25,7 @@ public class BitedActivity extends AppCompatActivity {
     private ImageView mBitedImgv;
     private TextView mTimeTv;
     private Button mOkBtn;
-    private boolean isVibrate=true;
+    private boolean isVibrate = true;
     //Ringtone audio=null;
     private MediaPlayer mediaPlayer = null;
 
@@ -34,8 +34,8 @@ public class BitedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bited);
 
-        mBitedImgv = (ImageView) findViewById(R.id.imgv_bited);
-        mTimeTv = (TextView) findViewById(R.id.tv_bited_time);
+        mBitedImgv 	= (ImageView) findViewById(R.id.imgv_bited);
+        mTimeTv 	= (TextView) findViewById(R.id.tv_bited_time);
 
         Glide.with(this).load(R.drawable.icon_bited).asGif()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mBitedImgv);
@@ -66,7 +66,7 @@ public class BitedActivity extends AppCompatActivity {
             }
         }.start();
 
-        mOkBtn=(Button)findViewById(R.id.btn_ok);
+        mOkBtn = (Button)findViewById(R.id.btn_ok);
         mOkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +79,7 @@ public class BitedActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        isVibrate=false;
+        isVibrate = false;
         mediaPlayer.stop();
     }
 }

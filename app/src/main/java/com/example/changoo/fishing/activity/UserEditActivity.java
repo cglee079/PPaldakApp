@@ -59,15 +59,15 @@ public class UserEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit);
 
-        mIdEt = (EditText) findViewById(R.id.et_user_id);
-        mNameEt = (EditText) findViewById(R.id.et_user_name);
+        mIdEt 		= (EditText) findViewById(R.id.et_user_id);
+        mNameEt 	= (EditText) findViewById(R.id.et_user_name);
         mPasswordEt = (EditText) findViewById(R.id.et_user_password);
-        mBirthEt = (EditText) findViewById(R.id.et_user_birth);
+        mBirthEt 	= (EditText) findViewById(R.id.et_user_birth);
         mPhoneNumberEt = (EditText) findViewById(R.id.et_user_tel);
-        mCancelBtn = (Button) findViewById(R.id.btn_profile_edit_cancel);
-        mCheckBtn = (Button) findViewById(R.id.btn_profile_edit_ok);
-        mBirthBtn = (Button) findViewById(R.id.btn_et_birth);
-        mUserImgv = (ImageView) findViewById(R.id.imgv_user_edit_image);
+        mCancelBtn 	= (Button) findViewById(R.id.btn_profile_edit_cancel);
+        mCheckBtn 	= (Button) findViewById(R.id.btn_profile_edit_ok);
+        mBirthBtn 	= (Button) findViewById(R.id.btn_et_birth);
+        mUserImgv 	= (ImageView) findViewById(R.id.imgv_user_edit_image);
 
         mCancelBtn.setOnClickListener(mBtnListener);
         mCheckBtn.setOnClickListener(mBtnListener);
@@ -79,11 +79,11 @@ public class UserEditActivity extends AppCompatActivity {
         mPhoneNumberEt.setText(user.getPhoneNumber());
         mIdEt.setText(user.getId());
         mPasswordEt.setText(user.getPassword());
-        if (user.getImageFile() == null)
+        if (user.getImageFile() == null){
             Picasso.with(this).load(R.drawable.image_default_user).transform(new CircleTransform()).into(mUserImgv);
-        else
+        } else {
             Picasso.with(this).load(HttpManager.getUserImageURL() + user.getImageFile()).transform(new CircleTransform()).into(mUserImgv);
-
+        }
 
         //날짜 입력 캘린더 생성
         calendar = Calendar.getInstance();
@@ -102,10 +102,12 @@ public class UserEditActivity extends AppCompatActivity {
                     setResult(RESULT_CANCELED);
                     finish();
                     break;
+                    
                 case R.id.btn_profile_edit_ok:
                     setResult(RESULT_OK);
                     new HttpUserAsyncTask().execute();
                     break;
+                    
                 case R.id.btn_et_birth:
                     dialog.show();
                     break;
@@ -121,8 +123,8 @@ public class UserEditActivity extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             this.year = year;
-            month = monthOfYear + 1;
-            day = dayOfMonth;
+            this.month = monthOfYear + 1;
+            this.day = dayOfMonth;
             mBirthEt.setText(this.year + "년" + month + "월" + day + "일");
         }
     };
@@ -131,21 +133,21 @@ public class UserEditActivity extends AppCompatActivity {
         private String line = null;
         private String page = null;
         private String reqeustURL = null;
-        String name = null;
-        String password = null;
-        String phoneNumber = null;
-        String id = null;
-        String birth = null;
+        private String name = null;
+        private String password = null;
+        private String phoneNumber = null;
+        private String id = null;
+        private String birth = null;
 
         /**
          * MainThread
          */
         @Override
         protected void onPreExecute() {
-            name = mNameEt.getText().toString();
-            password = mPasswordEt.getText().toString();
-            id = mIdEt.getText().toString();
-            birth = mBirthEt.getText().toString();
+            name 		= mNameEt.getText().toString();
+            password 	= mPasswordEt.getText().toString();
+            id 			= mIdEt.getText().toString();
+            birth 		= mBirthEt.getText().toString();
             phoneNumber = mPhoneNumberEt.getText().toString();
         }
 

@@ -78,8 +78,8 @@ public class SecondFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mData = new ArrayList<Fish>();
-        userID = User.getInstance().getId();
+        mData 	= new ArrayList<Fish>();
+        userID 	= User.getInstance().getId();
 
     }
 
@@ -90,8 +90,6 @@ public class SecondFragment extends Fragment {
         /**
          *Layout 새로고침 설정
          */
-
-
         mThisSwipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout_secondFragment);
         mThisSwipeLayout.setEnabled(true);
         mThisSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -197,8 +195,7 @@ public class SecondFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 index = i;
-                    new AlertDialog.Builder(getContext())
-                            .setItems(R.array.fab_long_click, new DialogInterface.OnClickListener() {
+                    new AlertDialog.Builder(getContext()).setItems(R.array.fab_long_click, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int selectedIndex) {
                                     switch (selectedIndex) {
@@ -326,7 +323,6 @@ public class SecondFragment extends Fragment {
                     Log.i(TAG, "fish From Sever : " + fish.toString());
                     mDataFromServer.add(fish);
                 }
-
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

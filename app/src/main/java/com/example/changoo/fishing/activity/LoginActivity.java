@@ -68,14 +68,13 @@ public class LoginActivity extends AppCompatActivity {
 
         //메인 액티비티에서 타이틀바 없애기
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-
         setContentView(R.layout.activity_login);
 
 
-        mIdEt = (EditText) findViewById(R.id.et_id);
-        mPwEt = (EditText) findViewById(R.id.et_pw);
-        mLoginBtn = (Button) findViewById(R.id.btn_login);
-        mJoinBtn = (Button) findViewById(R.id.btn_join);
+        mIdEt 		= (EditText) findViewById(R.id.et_id);
+        mPwEt 		= (EditText) findViewById(R.id.et_pw);
+        mLoginBtn 	= (Button) findViewById(R.id.btn_login);
+        mJoinBtn 	= (Button) findViewById(R.id.btn_join);
 
         mLoginBtn.setOnClickListener(new BtnListener());
         mJoinBtn.setOnClickListener(new BtnListener());
@@ -186,8 +185,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "Connect  " + connect);
 
                 connect.setConnectTimeout(3000);
-
-
+`
                 connect.setRequestMethod("POST"); // get방식 통신
                 connect.setDoOutput(true); // 쓰기모드 지정
                 connect.setDoInput(true); // 읽기모드 지정
@@ -198,7 +196,6 @@ public class LoginActivity extends AppCompatActivity {
                 outputStream.write(parameter.getBytes());
                 outputStream.flush();
                 outputStream.close();
-
 
                 InputStream is = connect.getInputStream(); //input스트림 개방
 
@@ -244,11 +241,7 @@ public class LoginActivity extends AppCompatActivity {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 Log.e(TAG, "ERROR URL" + e.toString());
-            } catch (
-                    SocketTimeoutException se
-                    )
-
-            {
+            } catch ( SocketTimeoutException se){
                 Log.e(TAG, "Error Connect TimeOut " + se.toString());
                 return null;
             } catch (IOException io) {

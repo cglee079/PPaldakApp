@@ -205,8 +205,7 @@ public class Fish implements Parcelable{
         dest.writeDouble(GPS_lot);
     }
 
-    public static final Parcelable.Creator<Fish> CREATOR
-            = new Parcelable.Creator<Fish>() {
+    public static final Parcelable.Creator<Fish> CREATOR = new Parcelable.Creator<Fish>() {
         public Fish createFromParcel(Parcel in) {
             return new Fish(in);
         }

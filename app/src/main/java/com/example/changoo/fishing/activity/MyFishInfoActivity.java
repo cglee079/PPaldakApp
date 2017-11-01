@@ -48,18 +48,17 @@ import java.util.Locale;
 public class MyFishInfoActivity extends AppCompatActivity {
     private static final String TAG = "MyFishInfoActivity";
     private Fish mFish;
-    TextView mNameTv;
-    TextView mMaxTv;
-    TextView mAvgTv;
-    TextView mSpeciesTv;
-    TextView mTimeingTv;
-    TextView mTimeTv;
-    TextView mGPSTv;
-    Button mFacebookBtn;
-    Button mKakaoBtn;
-    Button mCheckBtn;
-
-    ImageView mFishImgv;
+    private TextView mNameTv;
+    private TextView mMaxTv;
+    private TextView mAvgTv;
+    private TextView mSpeciesTv;
+    private TextView mTimeingTv;
+    private TextView mTimeTv;
+    private TextView mGPSTv;
+    private Button mFacebookBtn;
+    private Button mKakaoBtn;
+    private Button mCheckBtn;
+    private ImageView mFishImgv;
 
     @Override
     protected void onStart() {
@@ -75,15 +74,15 @@ public class MyFishInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();//Fish 객체 저장
         mFish = intent.getParcelableExtra("fish");
 
-        mNameTv = (TextView) findViewById(R.id.tv_my_info_name);
-        mSpeciesTv = (TextView) findViewById(R.id.tv_my_info_species);
-        mMaxTv = (TextView) findViewById(R.id.tv_my_info_maxpower);
-        mAvgTv = (TextView) findViewById(R.id.tv_my_info_avgpower);
-        mTimeTv = (TextView) findViewById(R.id.tv_my_info_datetime);
-        mTimeingTv = (TextView) findViewById(R.id.tv_my_info_timing);
-        mGPSTv = (TextView) findViewById(R.id.tv_my_info_gps);
+        mNameTv 	= (TextView) findViewById(R.id.tv_my_info_name);
+        mSpeciesTv 	= (TextView) findViewById(R.id.tv_my_info_species);
+        mMaxTv 		= (TextView) findViewById(R.id.tv_my_info_maxpower);
+        mAvgTv 		= (TextView) findViewById(R.id.tv_my_info_avgpower);
+        mTimeTv 	= (TextView) findViewById(R.id.tv_my_info_datetime);
+        mTimeingTv 	= (TextView) findViewById(R.id.tv_my_info_timing);
+        mGPSTv 		= (TextView) findViewById(R.id.tv_my_info_gps);
 
-        mFishImgv = (ImageView) findViewById(R.id.imgv_my_info_fish);
+        mFishImgv 	= (ImageView) findViewById(R.id.imgv_my_info_fish);
         mFacebookBtn = (Button) findViewById(R.id.btn_facebook_share);
         mFacebookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +136,7 @@ public class MyFishInfoActivity extends AppCompatActivity {
 
                     kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder, MyFishInfoActivity.this);
                 } catch (KakaoParameterException e) {
-                    Log.e("ddd", e.getMessage());
+                    Log.e("kakaoLink", e.getMessage());
                 }
 
 
@@ -165,10 +164,11 @@ public class MyFishInfoActivity extends AppCompatActivity {
             mTimeingTv.setText(mFish.getTimeing() + " 초");
             mGPSTv.setText(getAddress(this, mFish.getGPS_lat(), mFish.getGPS_lot()));
 
-            if (mFish.getImageFile().equals("null"))
+            if (mFish.getImageFile().equals("null")){
                 Picasso.with(this).load(R.drawable.image_default_fish).transform(new CircleTransform()).into(mFishImgv);
-            else
+            } else {
                 Picasso.with(this).load(HttpManager.getFishImageURL() + mFish.getImageFile()).transform(new CircleTransform()).into(mFishImgv);
+            }
 
         }
     }//onCreate End

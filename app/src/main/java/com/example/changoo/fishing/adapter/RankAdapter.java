@@ -21,14 +21,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class RankAdapter extends android.widget.BaseAdapter {
-
     public static final int CRITERIA_MAXPOWER = 0;
     public static final int CRITERIA_AVGPOWER = 1;
 
     private int criteria = 0;
-    Context mContext = null;
-    ArrayList<Fish> mData = null;
-    LayoutInflater mLayoutInflater = null;
+    private Context mContext = null;
+    private ArrayList<Fish> mData = null;
+    private LayoutInflater mLayoutInflater = null;
 
     public RankAdapter(Context context, ArrayList<Fish> data) {
         mContext = context;
@@ -55,8 +54,8 @@ public class RankAdapter extends android.widget.BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-
         View item = null;
+        
         if (i == 0) {
             item = mLayoutInflater.inflate(R.layout.listview_item_null, null);
         } else {
@@ -98,6 +97,7 @@ public class RankAdapter extends android.widget.BaseAdapter {
                     mFishAvgTv.setTypeface(null, Typeface.BOLD);
                     break;
             }
+            
             String fishName = mData.get(i).getName();
             String userId = mData.get(i).getUser_id();
             String fishSpecies = mData.get(i).getSpecies();
@@ -114,10 +114,11 @@ public class RankAdapter extends android.widget.BaseAdapter {
             mFishAvgTv.setText(fishAvg.toString() + " F");
             mFishDateTv.setText(fishDate);
 
-            if (fishImageFile.equals("null"))
+            if (fishImageFile.equals("null")){
                 Picasso.with(mContext).load(R.drawable.image_default_fish).transform(new CircleTransform()).into(mFishPictureImgv);
-            else
+            } else {
                 Picasso.with(mContext).load(HttpManager.getFishImageURL() + fishImageFile).transform(new CircleTransform()).into(mFishPictureImgv);
+            }
         }
 
         return item;

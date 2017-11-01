@@ -21,24 +21,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class FishAdapter extends android.widget.BaseAdapter {
-    public static final int SORTED_NAME=0;
-    public static final int SORTED_SPECIES=1;
-    public static final int SORTED_MAXPOWER =2;
-    public static final int SORTED_AVGPOWER=3;
-    public static final int SORTED_DATETIME=4;
+    public static final int SORTED_NAME 	= 0;
+    public static final int SORTED_SPECIES 	= 1;
+    public static final int SORTED_MAXPOWER = 2;
+    public static final int SORTED_AVGPOWER = 3;
+    public static final int SORTED_DATETIME	= 4;
 
-    private int sorted=0;
+    private int sorted = 0;
     private Context mContext = null;
     private ArrayList<Fish> mData = null;
     private LayoutInflater mLayoutInflater = null;
 
 
     public FishAdapter(Context context, ArrayList<Fish> data) {
-        mContext = context;
-        mData = data;
+        mContext	= context;
+        mData 		= data;
         mLayoutInflater = LayoutInflater.from(mContext);
     }
-
 
     @Override
     public int getCount() {
@@ -55,15 +54,15 @@ public class FishAdapter extends android.widget.BaseAdapter {
         return i;
     }
 
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-
         View item = null;
-        if(view!=null)
-            item=view;
-        else
+        
+        if(view != null){
+            item = view;
+        } else {
             item = mLayoutInflater.inflate(R.layout.listview_item_fish, null);
+        }
 
         ImageView mFishPictureImgv = (ImageView) item.findViewById(R.id.imgv_item_fish_image);
         TextView mFishnameTv = (TextView) item.findViewById(R.id.tv_item_fish_name);
@@ -131,11 +130,11 @@ public class FishAdapter extends android.widget.BaseAdapter {
         mFishAvgTv.setText(fishAvg.toString() + " F");
         mFishDateTv.setText(fishDate);
 
-        if (fishImageFile.equals("null"))
+        if (fishImageFile.equals("null")){
             Picasso.with(mContext).load(R.drawable.image_default_fish).transform(new CircleTransform()).into(mFishPictureImgv);
-        else
+        } else {
             Picasso.with(mContext).load(HttpManager.getFishImageURL() + fishImageFile).transform(new CircleTransform()).into(mFishPictureImgv);
-
+        }
 
         return item;
     }

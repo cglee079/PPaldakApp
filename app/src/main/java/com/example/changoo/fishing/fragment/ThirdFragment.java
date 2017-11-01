@@ -144,8 +144,8 @@ public class ThirdFragment extends Fragment {
         getDataFromServer();
         mRankAdapter = new RankAdapter(getActivity(), mData);
 
-        mFilterLayout = (LinearLayout) view.findViewById(R.id.layout_filter);
-        mFilterTBtn = (ToggleButton) view.findViewById(R.id.tbtn_rank_filter);
+        mFilterLayout 	= (LinearLayout) view.findViewById(R.id.layout_filter);
+        mFilterTBtn 	= (ToggleButton) view.findViewById(R.id.tbtn_rank_filter);
         mFilterTBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -376,10 +376,11 @@ public class ThirdFragment extends Fragment {
         filterInfo += "을 기준으로 ";
         filterInfo += mPeriodInfo;
         filterInfo += " 동안 ";
-        if (mSpeciesInfo.length() == 0)
+        if (mSpeciesInfo.length() == 0){
             filterInfo += "전체";
-        else
+        } else {
             filterInfo += mSpeciesInfo;
+        }
         filterInfo += " 어종을";
         filterInfo += " 랭크";
         mFilterInfoTv.setText(filterInfo);

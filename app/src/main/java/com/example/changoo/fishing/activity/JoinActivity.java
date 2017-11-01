@@ -101,21 +101,21 @@ public class JoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
-        mUserImgv = (ImageView) findViewById(R.id.imgv_user_img);
-        mIdEt = (EditText) findViewById(R.id.et_join_id);
-        mPwEt = (EditText) findViewById(R.id.et_join_pw);
-        mNameEt = (EditText) findViewById(R.id.et_join_name);
-        mBirthEt = (EditText) findViewById(R.id.et_join_birth);
-        mPhoneNumberEt = (EditText) findViewById(R.id.et_join_phone);
+        mUserImgv 		= (ImageView) findViewById(R.id.imgv_user_img);
+        mIdEt 			= (EditText) findViewById(R.id.et_join_id);
+        mPwEt 			= (EditText) findViewById(R.id.et_join_pw);
+        mNameEt 		= (EditText) findViewById(R.id.et_join_name);
+        mBirthEt 		= (EditText) findViewById(R.id.et_join_birth);
+        mPhoneNumberEt 	= (EditText) findViewById(R.id.et_join_phone);
         mAuthoriztionEt = (EditText) findViewById(R.id.et_join_authorization_number);
-        mMessageTx = (TextView) findViewById(R.id.tv_join_message);
+        mMessageTx 		= (TextView) findViewById(R.id.tv_join_message);
 
-        mJoinBtn = (Button) findViewById(R.id.btn_join_join);
-        mCancelBtn = (Button) findViewById(R.id.btn_join_cancel);
-        mBirthBtn = (Button) findViewById(R.id.btn_join_birth);
+        mJoinBtn 		= (Button) findViewById(R.id.btn_join_join);
+        mCancelBtn 		= (Button) findViewById(R.id.btn_join_cancel);
+        mBirthBtn 		= (Button) findViewById(R.id.btn_join_birth);
         mAuthoriztionBtn = (Button) findViewById(R.id.btn_join_authorization);
         mCheckMessageBtn = (Button) findViewById(R.id.btn_join_check_message);
-        mMaleRadioBtn = (RadioButton) findViewById(R.id.rbtn_join_male);
+        mMaleRadioBtn 	= (RadioButton) findViewById(R.id.rbtn_join_male);
         mFemaleRadioBtn = (RadioButton) findViewById(R.id.rbtn_join_female);
 
         Picasso.with(this).load(R.drawable.icon_camera_white).transform(new CircleTransform()).into(mUserImgv);
@@ -125,6 +125,7 @@ public class JoinActivity extends AppCompatActivity {
                 doSelectPicture();
             }
         });
+        
         mJoinBtn.setOnClickListener(new BtnListener());
         mCancelBtn.setOnClickListener(new BtnListener());
         mBirthBtn.setOnClickListener(new BtnListener());
@@ -208,12 +209,9 @@ public class JoinActivity extends AppCompatActivity {
                 requestMessagePermission();
             } else if (v.getId() == R.id.btn_join_authorization) { // 휴대폰 번호 인증 입력 버튼 클릭
                 if (mAuthoriztionEt.getText().toString().equals(Integer.toString(mAuthorizationNumber))) {
-                    //인증번호와 입력번호가 같음
-                    //인증 성공
-                    mMessageTx.setText("휴대폰 번호가 인증 되었습니다.");
+                    mMessageTx.setText("휴대폰 번호가 인증 되었습니다.");  //인증 성공
                 } else {
-                    //인증 실패
-                    mMessageTx.setText("휴대폰 번호 인증을 실패했습니다.");
+                    mMessageTx.setText("휴대폰 번호 인증을 실패했습니다."); //인증 실패
                     Log.i(TAG, "authorization failed" + mAuthoriztionEt.getText().toString() + "::" + Integer.toString(mAuthorizationNumber));
                 }
             }
@@ -228,9 +226,9 @@ public class JoinActivity extends AppCompatActivity {
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            this.year = year;
-            month = monthOfYear + 1;
-            day = dayOfMonth;
+            this.year 	= year;
+            this.month 	= monthOfYear + 1;
+            this.day 	= dayOfMonth;
             mBirthEt.setText(this.year + "년" + month + "월" + day + "일");
         }
     };
@@ -242,17 +240,10 @@ public class JoinActivity extends AppCompatActivity {
      */
     public void requestMessagePermission() {
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) { //해당 퍼미션이 없을 경우
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) { //해당 퍼미션이 없을 경우
             Log.i(TAG, "permission no existed");
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.SEND_SMS},
-                    255); //request cod 255번으로 권한을 요청하는 다이어로그 생성
-        } else if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 255); //request cod 255번으로 권한을 요청하는 다이어로그 생성
+        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
             Log.i(TAG, "permission already greanted");
 
             //문자 발송
@@ -260,7 +251,6 @@ public class JoinActivity extends AppCompatActivity {
             mAuthorizationNumber = setAuthorizationNumber();
             smsManager.sendTextMessage(mPhoneNumberEt.getText().toString(), null, Integer.toString(mAuthorizationNumber), null, null);
         }
-
     }
 
     @Override
@@ -268,8 +258,7 @@ public class JoinActivity extends AppCompatActivity {
         switch (requestCode) {
             case 255: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
@@ -389,22 +378,21 @@ public class JoinActivity extends AppCompatActivity {
             String password = mPwEt.getText().toString();
             String name = mNameEt.getText().toString();
             String gender = null;
-            if (mMaleRadioBtn.isChecked())
-                gender = mMaleRadioBtn.getText().toString();
-            else if (mFemaleRadioBtn.isChecked())
-                gender = mFemaleRadioBtn.getText().toString();
             String birth = mBirthEt.getText().toString();
             String phoneNumber = mPhoneNumberEt.getText().toString();
             String imgFile=null;
 
-//            한글 인코딩
+            if (mMaleRadioBtn.isChecked()) {
+                gender = mMaleRadioBtn.getText().toString();
+            } else if (mFemaleRadioBtn.isChecked()) {
+                gender = mFemaleRadioBtn.getText().toString();
+            }
+            
+            //한글 인코딩
             try {
-                if(gender!=null)
-                    gender = URLEncoder.encode(gender, "UTF-8");
-                if(name!=null)
-                name = URLEncoder.encode(name, "UTF-8");
-                if(birth!=null)
-                birth = URLEncoder.encode(birth, "UTF-8");
+                if(gender != null) { gender = URLEncoder.encode(gender, "UTF-8"); }
+                if(name != null) { name = URLEncoder.encode(name, "UTF-8"); }
+                if(birth != null) { birth = URLEncoder.encode(birth, "UTF-8"); }
             } catch (UnsupportedEncodingException e) {
             }
 
@@ -416,7 +404,7 @@ public class JoinActivity extends AppCompatActivity {
             mUser.setPhoneNumber(phoneNumber);
 
             if (isPickPicture == true) {
-                imgFile=mUser.getId() + ".jpg";
+                imgFile = mUser.getId() + ".jpg";
             }
             mUser.setImageFile(imgFile);
         }
@@ -513,13 +501,13 @@ public class JoinActivity extends AppCompatActivity {
             if (result.equals(Protocol.JOIN_NOK) || result == null) {
                 Log.d(TAG, "JOIN FAILED");
                 Toast.makeText(JoinActivity.this, R.string.toast_join_failed, Toast.LENGTH_SHORT).show();
-
                 finish();
             } else if (result.equals(Protocol.JOIN_OK)) {
                 Log.d(TAG, "JOIN SUCCESS");
                 Toast.makeText(JoinActivity.this, R.string.toast_join_success, Toast.LENGTH_SHORT).show();
-                if (mUser.getImageFile() != null)
+                if (mUser.getImageFile() != null){
                     sendFishImageToServer();
+                }
             }
         }
 
@@ -574,11 +562,12 @@ public class JoinActivity extends AppCompatActivity {
                 //IMAGE 전송
                 wr.writeBytes("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n");
                 wr.writeBytes("Content-Type: application/octet-stream\r\n\r\n");
+                
                 FileInputStream fileInputStream = new FileInputStream(BitmapManager.getImagePath());
-                int bytesAvailable = fileInputStream.available();
-                int maxBufferSize = 1024;
-                int bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                byte[] buffer = new byte[bufferSize];
+                int bytesAvailable 	= fileInputStream.available();
+                int maxBufferSize 	= 1024;
+                int bufferSize		= Math.min(bytesAvailable, maxBufferSize);
+                byte[] buffer 		= new byte[bufferSize];
 
                 int bytesRead = fileInputStream.read(buffer, 0, bufferSize);
                 while (bytesRead > 0) {

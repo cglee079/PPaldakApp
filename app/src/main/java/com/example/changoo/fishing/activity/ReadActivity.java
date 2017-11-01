@@ -22,8 +22,8 @@ public class ReadActivity extends AppCompatActivity {
         TextView mReadTv=(TextView)this.findViewById(R.id.tv_read);
         String str, str1="";
         try {
-            FileInputStream fis= new FileInputStream(MyFile.getMyFile());
-            BufferedReader bufferReader=new BufferedReader(new InputStreamReader(fis));
+            FileInputStream fis = new FileInputStream(MyFile.getMyFile());
+            BufferedReader bufferReader = new BufferedReader(new InputStreamReader(fis));
 
             while( (str = bufferReader.readLine()) != null ) {    // str에 txt파일의 한 라인을 읽어온다
                 str1 += str;

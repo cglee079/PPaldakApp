@@ -19,9 +19,14 @@ public class User implements Serializable {
     private String phoneNumber;
     private String imageFile;
 
+    private User(){
+    	
+    }
+    
     public synchronized static User getInstance() {
-        if (instance == null)
+        if (instance == null){
             instance = new User();
+        }
         return instance;
     }
 
@@ -103,12 +108,12 @@ public class User implements Serializable {
     }
 
     public void clear(){
-        id=null;
-        password=null;
-        name=null;
-        birth=null;
-        gender=null;
-        phoneNumber=null;
-        imageFile=null;
+        id			= null;
+        password	= null;
+        name		= null;
+        birth		= null;
+        gender		= null;
+        phoneNumber	= null;
+        imageFile	= null;
     }
 }
