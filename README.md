@@ -1,9 +1,111 @@
-한성대학교 컴퓨터공학부 W2M3팀의 졸업프로젝트 작품 입니다.
+<h2><strong>개요</strong></h2>
 
-아두이노를 이용한 IOT 스마트 낚시대 팔딱팔딱 프로젝트의 안드로이드 클라이언트입니다.
+<p>본 프로젝트는 &nbsp;IOT 스마트 낚싯대 프로젝트 입니다.<br/>
+기존에 낚싯대에 아두이노를 부착하여 블루투스를 통하여 스마트폰과 통신합니다.<br/>
+주요기능으로는 무게 센서를 통하여, 사용자에게 스마트폰을 통해 입질 알림을 주고<br/>
+물고기에 힘을 측정하여 서버에 저장 하여 추후 확인, 공유, 랭킹화가 가능 합니다.</p>
 
-블루투스를 통해 IOT 스마트 낚시대의 데이터를 수신하며
+<p>&nbsp;</p>
 
-수신된 데이터로 알고리즘을 수행합니다.
+<p>&nbsp;</p>
 
-서버와 HTML 통신하여 저장된 사용자, 물고기 데이터를 송수신합니다.
+<h2><strong>팀원 및 역할분담</strong></h2>
+
+<ul>
+	<li><strong>이찬구 : 팀장, 아두이노 및 안드로이드&nbsp;개발</strong></li>
+	<li>서송이 : 안드로이드 및 서버 개발</li>
+	<li>강동혁 : 안드로이드 및 서버 개발</li>
+	<li>신지혜 : 디자인</li>
+	<li>박수열 : 디자인, 영상</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><strong>프로젝트 개발 기간</strong></h2>
+
+<ul>
+	<li>2017.01 ~ 2017.06 (약 6개월)</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><strong>프로젝트 구조</strong></h2>
+
+<ul>
+	<li>H/W : &nbsp;아두이노 보드, MPU-6050 (자이로&nbsp;센서), 로드셀 (무게 센서), HM-10 (블루투스 모듈)</li>
+	<li>Client : Andorid</li>
+	<li>Server : Spring</li>
+	<li>DBMS : MySQL</li>
+	<li>WAS : Tomcat 8.0</li>
+	<li>Lang : Java 1.8, C</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>아두이노, 무게센서, 기울기 센서 등의 하드웨어가 낚싯대에 부착되어집니다.</p>
+
+<p>센서에 의해 측정된 정보는 블루투스를 통해 스마트폰으로 전송됩니다.</p>
+
+<p>어플리케이션은 블루투스를 통해 얻은 센서 데이터로 로직을 수행하며,</p>
+
+<p>서버와 HTTP통신하여 사용자의 정보와 물고기 정보를 송, 수신 합니다.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><strong>개발도구</strong></h2>
+
+<ul>
+	<li>IDE
+	<ul>
+		<li>Eclipse</li>
+		<li>Android Studio</li>
+		<li>Aduino IDE</li>
+	</ul>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><strong>스킬</strong></h2>
+
+<ul>
+	<li>Team-work : 프로젝트 팀장</li>
+	<li>Aduino : H/W 회로 구성</li>
+	<li>Android : 전반적인 APP 개발,&nbsp; 아두이노에 부착된 블루투스 데이터 수신</li>
+	<li>Logic : 낚시대 상태 변화 감지에 따른 로직 구현.</li>
+	<li>SpringMVC&nbsp; : Server 구현</li>
+	<li>Facebook API : 페이스북 공유하기 구현</li>
+	<li>Kakaotalk API : 카카오톡 공유하기 구현</li>
+	<li>Google Map API : 사용자 위치 정보 수신 및 표시</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><strong>프로젝트 성과</strong></h2>
+
+<ul>
+	<li>특허 가능성 확인.</li>
+	<li>2017.05 한성대학교 컴퓨터공학부 졸업프로젝트 최우수상 수상</li>
+	<li>2017.11 제 15회 임베디드 소프트웨어 결선 진출</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2><strong>프로젝트 설명</strong></h2>
+
+자세한 내용은 <a href="http://www.changoos.com/projects/16">이곳</a>을 참조해주세요.
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
